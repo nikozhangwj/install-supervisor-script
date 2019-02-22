@@ -16,6 +16,9 @@ if [ -f ${SV_PATH} ];then
 	exit 1;
 fi
 
+echo "yum install nss and curl first."
+yum update -y nss curl
+
 cd /tmp/
 echo "Starting download&install setuptools"
 wget --no-check-certificate https://bootstrap.pypa.io/ez_setup.py -O - | sudo python
@@ -37,7 +40,7 @@ SV_DIR=/etc/supervisor/conf.d
 
 mkdir -p ${SV_DIR}
 
-if [ ! -d SV_DIR ];then
+if [ ! -d ${SV_DIR} ];then
 	echo "${SV_DIR} not found"
 	exit 1;
 fi
