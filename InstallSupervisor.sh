@@ -54,7 +54,7 @@ else
 fi
 
 if [ ! -f supervisor ];then
-	wget https://github.com/nikozhangwj/install-supervisor-script/blob/master/supervisor
+	wget https://github.com/nikozhangwj/install-supervisor-script/releases/download/1.0/supervisor
 fi
 	
 cp ./supervisor /etc/rc.d/init.d/supervisor
