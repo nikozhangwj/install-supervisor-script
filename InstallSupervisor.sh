@@ -53,13 +53,13 @@ else
 	exit 1;
 fi
 
-if [ -f supervisor ];then
-	cp ./supervisor /etc/rc.d/init.d/supervisor
-	chmod 755 /etc/rc.d/init.d/supervisor
-	chkconfig supervisor on
-	service supervisor start
-	service supervisor status
-	echo "Install finished."
+if [ ! -f supervisor ];then
+	wget https://github.com/nikozhangwj/install-supervisor-script/blob/master/supervisor
 fi
-
-echo "Install failed"
+	
+cp ./supervisor /etc/rc.d/init.d/supervisor
+chmod 755 /etc/rc.d/init.d/supervisor
+chkconfig supervisor on
+service supervisor start
+service supervisor status
+echo "Install finished, please use 'service supervisor status' check it out ."
