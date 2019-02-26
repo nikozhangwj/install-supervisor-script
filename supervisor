@@ -14,7 +14,7 @@
 #
 # source function library
 . /etc/rc.d/init.d/functions
-PIDFILE=/tmp/supervisord.pid
+PIDFILE=/var/run/supervisord.pid
 
 RETVAL=0
 start() {

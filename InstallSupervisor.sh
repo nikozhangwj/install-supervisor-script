@@ -36,7 +36,7 @@ if [ ! -f ${SV_PATH} ];then
 	exit 1;
 fi
 
-SV_DIR=/etc/supervisor/conf.d
+SV_DIR=/etc/supervisor/config.d
 
 mkdir -p ${SV_DIR}
 
