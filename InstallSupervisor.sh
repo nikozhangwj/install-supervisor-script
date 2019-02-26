@@ -19,16 +19,9 @@ fi
 echo "yum install nss and curl first."
 yum update -y nss curl
 
-cd /tmp/
+cd ~
 echo "Starting download&install setuptools"
 wget --no-check-certificate https://bootstrap.pypa.io/ez_setup.py -O - | sudo python
-
-if [ -f ! setuptools* ];then
-	echo "setuptools not found please download it manual"
-	exit 1;
-fi
-echo "Setuptools install finished, begain install supervisor"
-
 easy_install supervisor
 
 if [ ! -f ${SV_PATH} ];then
@@ -55,6 +48,8 @@ else
 	echo "please genrate config file manual."
 	exit 1;
 fi
+
+cd /tmp/
 
 if [ ! -f supervisor ];then
 	wget https://github.com/nikozhangwj/install-supervisor-script/releases/download/1.0/supervisor
