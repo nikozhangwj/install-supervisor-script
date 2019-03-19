@@ -40,7 +40,12 @@ fi
 
 CONF_PATH=/etc/supervisor/supervisord.conf
 
-echo_supervisord_conf > ${CONF_PATH}
+if [ ! -f /tmp/supervisord.conf ];then
+	echo_supervisord_conf > /tmp/supervisord.conf
+fi
+
+cp /tmp/supervisord.conf ${CONF_PATH}
+
 
 if [ -f ${CONF_PATH} ];then
 	echo "${CONF_PATH} genrate success."
@@ -54,10 +59,16 @@ cd /tmp/
 if [ ! -f supervisor ];then
 	wget https://github.com/nikozhangwj/install-supervisor-script/releases/download/1.0/supervisor
 fi
+
+mkdir /tmp/log
+chown -R admin:admin /tmp/log
 	
 cp ./supervisor /etc/rc.d/init.d/supervisor
 chmod 755 /etc/rc.d/init.d/supervisor
 chkconfig supervisor on
-service supervisor start
-service supervisor status
-echo "Install finished, please use 'service supervisor status' check it out ."
+/etc/init.d/supervisor start
+# service supervisor status
+rm -f /tmp/supervisor
+rm -f /tmp/supervisord.conf
+echo "Install finished, please use 'service supervisor start' check it out ."
+
